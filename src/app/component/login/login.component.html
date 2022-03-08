@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center h-100">
+  <div class="d-flex flex-column justify-content-center">
+    <nb-card>
+      <nb-card-header> Login </nb-card-header>
+      <nb-card-body>
+        <div class="error-message">
+          {{ errorMessage }}<span class="font-weight-bold" *ngIf="errorMessage">!</span>
+        </div>
+        <div *ngIf="isAuthenticated">Giriş başarılı. Lütfen bekleyin</div>
+
+        <nb-card-body [formGroup]="form">
+          <div class="my-3">
+            <nb-form-field>
+              <input
+                type="text"
+                formControlName="username"
+                nbInput
+                placeholder="Kullanıcı adı"
+                formControlName="username"
+              />
+            </nb-form-field>
+          </div>
+          <div class="my-3">
+            <nb-form-field>
+              <input
+                [type]="getInputType()"
+                type="password"
+                formControlName="password"
+                nbInput
+              />
+              <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+                <nb-icon
+                  [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                  pack="eva"
+                  [attr.aria-label]="
+                    showPassword ? 'hide password' : 'show password'
+                  "
+                >
+                </nb-icon>
+              </button>
+            </nb-form-field>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button (click)="login()" type="submit" status="success" nbButton>
+              Login
+            </button>
+          </div>
+          <br />
+        </nb-card-body>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

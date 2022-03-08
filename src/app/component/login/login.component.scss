@@ -1,0 +1,17 @@
+
+:invalid nb-card{
+    border: 1px solid red;
+    box-shadow: 0 0 9px 4px #ff00004a;
+    &span{
+        font-weight: 800;
+    }
+}
+
+.error-message{
+    color:red;
+}
+
+input:invalid {
+	border: 1px solid #CB000F;
+	color: red
+}

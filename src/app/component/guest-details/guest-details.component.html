@@ -1,0 +1,160 @@
+<div *ngIf="details as details; else loading">
+  <nb-card>
+    <nb-card-header class="d-flex justify-content-between">
+      <div>Misafir Bilgileri</div>
+
+      <div>
+        <button nbButton routerLink="/questionnaire">Ankete Katıl</button>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-2">
+          <nb-card>
+            <nb-card-body>
+              <img class="w-100 p-1" [src]="details.profile_pic_url" />
+            </nb-card-body>
+            <nb-card-footer>
+              <div class="d-flex">First Name: {{ details.first_name }}</div>
+              <div class="d-flex">Last Name: {{ details.last_name }}</div>
+            </nb-card-footer>
+          </nb-card>
+        </div>
+        <div class="col-10">
+          <!-- {{getKeys(this.details) | json}} -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of getKeys(this.details)">
+                <td><b>{{ getTitle(item.key) | titlecase }}</b></td>
+                <td *ngIf="!item.items">{{ formatValue(item.value) }}</td>
+                <ng-container *ngIf="item.items?.length > 0">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let subItem of item.items">
+                        <td><b>{{ getTitle(subItem.key) | titlecase }}</b></td>
+                        <td>{{ formatValue(subItem.value) }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </ng-container>
+              </tr>
+
+              <!-- 
+              <tr>
+                <td>id</td>
+                <td>{{ details.id }}</td>
+              </tr>
+
+              <tr>
+                <td>{{getTitle('hotel_id') | titlecase}}</td>
+                <td>{{ details.hotel_id }}</td>
+              </tr>
+
+              <tr>
+                <td>locale</td>
+                <td>{{ details.locale }}</td>
+              </tr>
+
+              <tr>
+                <td>room_no</td>
+                <td>{{ details.room_no }}</td>
+              </tr>
+
+              <tr>
+                <td>entry_date</td>
+                <td>{{ details.entry_date }}</td>
+              </tr>
+
+              <tr>
+                <td>release_date</td>
+                <td>{{ details.release_date }}</td>
+              </tr>
+              <tr>
+                <td>phone_no</td>
+                <td>{{ details.phone_no }}</td>
+              </tr>
+              <tr>
+                <td>booking_date</td>
+                <td>{{ details.booking_date }}</td>
+              </tr>
+              <tr>
+                <td>date_of_birth</td>
+                <td>{{ details.date_of_birth }}</td>
+              </tr>
+              <tr>
+                <td>e_mail</td>
+                <td>{{ details.e_mail }}</td>
+              </tr>
+
+              <tr>
+                <td>wedding_anniversary</td>
+                <td>{{ details.wedding_anniversary }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info points_earned</td>
+                <td>{{ details.loyalty_info.points_earned }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info points_spend</td>
+                <td>{{ details.loyalty_info.points_spend }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info remaining_point</td>
+                <td>{{ details.loyalty_info.remaining_point }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info overnight_stay</td>
+                <td>{{ details.loyalty_info.overnight_stay }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info target_night_stay</td>
+                <td>{{ details.loyalty_info.target_night_stay }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info earned_night_stay</td>
+                <td>{{ details.loyalty_info.earned_night_stay }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info room_type</td>
+                <td>{{ details.loyalty_info.room_type }}</td>
+              </tr>
+
+              <tr>
+                <td>loyalty_info menu_item_id</td>
+                <td>{{ details.loyalty_info.menu_item_id }}</td>
+              </tr>
+
+              <tr>
+                <td>pillow_type</td>
+                <td>{{ details.loyalty_info.menu_item_id }}</td>
+              </tr>
+
+              <tr>
+                <td>pillow_type</td>
+                <td>{{ details.pillow_type }}</td>
+              </tr>
+              <tr>
+                <td>bed_type</td>
+                <td>{{ details.bed_type }}</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
+<ng-template #loading> Lütfen bekleyin </ng-template>
